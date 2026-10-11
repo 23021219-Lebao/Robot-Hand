@@ -33,7 +33,3 @@ Mỗi tệp chứa 1.000 mẫu trong khoảng 10 giây.
 * `figures/` — các biểu đồ so sánh hai mức tải.
 * `data/DATA\_DICTIONARY.md` — giải thích các cột dữ liệu.
 
-## Gợi ý vị trí trên GitHub
-
-Có thể sao chép thư mục này vào repository `Robot-Hand`, ví dụ: `research/fsr402\_error\_study/`.
-
