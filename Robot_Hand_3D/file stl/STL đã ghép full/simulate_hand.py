@@ -23,8 +23,8 @@ def run_simulation():
     
     # 3. Nạp file URDF bàn tay robot
     urdf_path = "robot_hand.urdf"
-    start_pos = [0, 0, 0.35]
-    start_orientation = p.getQuaternionFromEuler([math.pi/2, 0, 0])  # Dựng đứng bàn tay
+    start_pos = [0, 0, 0.5]
+    start_orientation = p.getQuaternionFromEuler([0, math.pi/2, 0])  # Dựng đứng bàn tay
     
     robot_id = p.loadURDF(urdf_path, start_pos, start_orientation, useFixedBase=True)
     
