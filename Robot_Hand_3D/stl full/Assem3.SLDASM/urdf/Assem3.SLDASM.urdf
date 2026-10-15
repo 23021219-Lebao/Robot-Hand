@@ -1,0 +1,1319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Assem3.SLDASM">
+  <link
+    name="palm">
+    <inertial>
+      <origin
+        xyz="0.301161056526184 -0.210470351654224 0.197779275077974"
+        rpy="0 0 0" />
+      <mass
+        value="0.894186155822798" />
+      <inertia
+        ixx="0.001212380650741"
+        ixy="0.00019978011328165"
+        ixz="0.000469869986962447"
+        iyy="0.00990737563952744"
+        iyz="-2.4718290160213E-05"
+        izz="0.00933436542825116" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/palm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/palm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="index_base_link">
+    <inertial>
+      <origin
+        xyz="-0.0177415233280815 0.000251490534622367 0.0240861286272307"
+        rpy="0 0 0" />
+      <mass
+        value="0.0111325889293338" />
+      <inertia
+        ixx="2.76750216815234E-06"
+        ixy="-3.10645766102487E-10"
+        ixz="2.29046927638931E-07"
+        iyy="3.69335125192248E-06"
+        iyz="2.85746042010159E-10"
+        izz="1.9603794474026E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/index_base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/index_base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="index_joint_yaw"
+    type="continuous">
+    <origin
+      xyz="0.12739562553486 -0.21370248708471 0.263383233546699"
+      rpy="1.55334754291189 0.379752585730922 0.296077936947451" />
+    <parent
+      link="palm" />
+    <child
+      link="index_base_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="index_proximal_link">
+    <inertial>
+      <origin
+        xyz="-0.0227303710464639 0.000566366145356184 -0.000500118547570039"
+        rpy="0 0 0" />
+      <mass
+        value="0.0343575115730171" />
+      <inertia
+        ixx="3.86104050365388E-06"
+        ixy="5.35444134575354E-08"
+        ixz="1.67194979547312E-11"
+        iyy="1.19658208689625E-05"
+        iyz="1.49478085266713E-11"
+        izz="1.21578002758406E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/index_proximal_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/index_proximal_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="index_joint_pitch_1"
+    type="continuous">
+    <origin
+      xyz="-0.0383000000000001 0 0.0245499999999999"
+      rpy="1.57079632679489 -0.806428847435704 0" />
+    <parent
+      link="index_base_link" />
+    <child
+      link="index_proximal_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="index_middle_link">
+    <inertial>
+      <origin
+        xyz="-0.0178937528848281 0.00112565875289014 -0.000750015320062913"
+        rpy="0 0 0" />
+      <mass
+        value="0.0221314773804133" />
+      <inertia
+        ixx="2.00535225799998E-06"
+        ixy="-5.53689668275047E-08"
+        ixz="6.1771721423125E-12"
+        iyy="5.99246349963723E-06"
+        iyz="2.30137632080631E-11"
+        izz="6.08181620255981E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/index_middle_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/index_middle_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="index_joint_pitch_2"
+    type="continuous">
+    <origin
+      xyz="-0.0593999999999999 0 0"
+      rpy="0 0 0.740963722329484" />
+    <parent
+      link="index_proximal_link" />
+    <child
+      link="index_middle_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="index_distal_link">
+    <inertial>
+      <origin
+        xyz="-0.00138076284733737 0.00336056081988351 -0.00100000093422509"
+        rpy="0 0 0" />
+      <mass
+        value="0.00533144743739454" />
+      <inertia
+        ixx="4.61825502146602E-07"
+        ixy="-2.52096745773157E-08"
+        ixz="3.3735424021622E-12"
+        iyy="4.4889504156102E-07"
+        iyz="3.32016888998049E-12"
+        izz="5.09292303173551E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/index_distal_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/index_distal_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="index_joint_pitch_3"
+    type="continuous">
+    <origin
+      xyz="-0.049397916666667 0 0"
+      rpy="0 0 0.776166094291773" />
+    <parent
+      link="index_middle_link" />
+    <child
+      link="index_distal_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="index_nail_link">
+    <inertial>
+      <origin
+        xyz="-0.049660560554966 0.00322482517655305 0.0228592887962202"
+        rpy="0 0 0" />
+      <mass
+        value="0.00981858930546182" />
+      <inertia
+        ixx="7.69207728426677E-07"
+        ixy="-1.07977721758191E-08"
+        ixz="-7.5330349375678E-13"
+        iyy="6.95948405817781E-07"
+        iyz="9.17620332716166E-12"
+        izz="9.60343520698277E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/index_nail_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/index_nail_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="index_nail_joint"
+    type="fixed">
+    <origin
+      xyz="0.0251268666553788 -0.00140362395735136 -0.0238592310916143"
+      rpy="0 0 0" />
+    <parent
+      link="index_distal_link" />
+    <child
+      link="index_nail_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="middle_base_link">
+    <inertial>
+      <origin
+        xyz="-0.0177415223644153 0.000251488723473692 0.0240861264818021"
+        rpy="0 0 0" />
+      <mass
+        value="0.0111325881199176" />
+      <inertia
+        ixx="2.76750228777035E-06"
+        ixy="-3.10713161379073E-10"
+        ixz="2.29046915311959E-07"
+        iyy="3.69335142452052E-06"
+        iyz="2.85713761568618E-10"
+        izz="1.96037939390605E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/middle_base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/middle_base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="middle_joint_yaw"
+    type="continuous">
+    <origin
+      xyz="0.119770343162181 -0.216691092445459 0.227540864856823"
+      rpy="1.55448342854809 0.114776632768014 0.300678210152138" />
+    <parent
+      link="palm" />
+    <child
+      link="middle_base_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="middle_proximal_link">
+    <inertial>
+      <origin
+        xyz="-0.0227303509590227 0.000566365285076934 -1.23622489717201E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.0343575212763594" />
+      <inertia
+        ixx="3.86104287793776E-06"
+        ixy="5.35418070749655E-08"
+        ixz="2.28880490161814E-11"
+        iyy="1.19658487843075E-05"
+        iyz="1.86260234357479E-11"
+        izz="1.21578151838029E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/middle_proximal_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/middle_proximal_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="middle_joint_pitch_1"
+    type="continuous">
+    <origin
+      xyz="-0.0383 0 0.02455"
+      rpy="1.5707963267949 -1.36153544631878 0" />
+    <parent
+      link="middle_base_link" />
+    <child
+      link="middle_proximal_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="middle_middle_link">
+    <inertial>
+      <origin
+        xyz="-0.0178937396617453 0.00112567340540758 -0.000250013963565388"
+        rpy="0 0 0" />
+      <mass
+        value="0.0221314893769501" />
+      <inertia
+        ixx="2.00534430193454E-06"
+        ixy="-5.53757629799153E-08"
+        ixz="3.22305190676158E-12"
+        iyy="5.99247924465078E-06"
+        iyz="2.13242412239305E-11"
+        izz="6.08181929752357E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/middle_middle_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/middle_middle_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="middle_joint_pitch_2"
+    type="continuous">
+    <origin
+      xyz="-0.0594 0 0"
+      rpy="0 0 0.736639548417462" />
+    <parent
+      link="middle_proximal_link" />
+    <child
+      link="middle_middle_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="middle_distal_link">
+    <inertial>
+      <origin
+        xyz="-0.00138075458620253 0.00336056997374751 -0.000499991906466657"
+        rpy="0 0 0" />
+      <mass
+        value="0.0053314502152958" />
+      <inertia
+        ixx="4.61825354144886E-07"
+        ixy="-2.52101285003637E-08"
+        ixz="2.97678030338839E-12"
+        iyy="4.48895046736259E-07"
+        iyz="3.35529105399555E-12"
+        izz="5.09292123223473E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/middle_distal_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/middle_distal_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="middle_joint_pitch_3"
+    type="continuous">
+    <origin
+      xyz="-0.0493979166666666 0 0"
+      rpy="0 0 0.776189302977594" />
+    <parent
+      link="middle_middle_link" />
+    <child
+      link="middle_distal_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="middle_nail_link">
+    <inertial>
+      <origin
+        xyz="-0.0496605610283601 0.00322483010074895 0.0228592847622732"
+        rpy="0 0 0" />
+      <mass
+        value="0.00981858487322156" />
+      <inertia
+        ixx="7.69207401809597E-07"
+        ixy="-1.07977987152951E-08"
+        ixz="-7.66571828510052E-13"
+        iyy="6.95948417148557E-07"
+        iyz="8.90947256535947E-12"
+        izz="9.6034299729337E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/middle_nail_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/middle_nail_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="middle_nail_joint"
+    type="fixed">
+    <origin
+      xyz="0.0251268666553788 -0.00150753802693751 -0.0232991217983359"
+      rpy="-0.00455180196414181 0 0" />
+    <parent
+      link="middle_distal_link" />
+    <child
+      link="middle_nail_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="ring_base_link">
+    <inertial>
+      <origin
+        xyz="-0.0177415220600169 0.000251487602026451 0.0240861264456557"
+        rpy="0 0 0" />
+      <mass
+        value="0.0111325874599663" />
+      <inertia
+        ixx="2.76750222517554E-06"
+        ixy="-3.10757907265937E-10"
+        ixz="2.29046893330151E-07"
+        iyy="3.69335134985647E-06"
+        iyz="2.85695594688103E-10"
+        izz="1.96037934101299E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/ring_base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/ring_base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ring_joint_yaw"
+    type="continuous">
+    <origin
+      xyz="0.115767808171592 -0.218560096910481 0.191041020712975"
+      rpy="1.55454947625079 -0.0713096134099142 0.303704281357926" />
+    <parent
+      link="palm" />
+    <child
+      link="ring_base_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="ring_proximal_link">
+    <inertial>
+      <origin
+        xyz="-0.0227303661430053 0.000566392038910596 -1.02131993612309E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.0343574656836258" />
+      <inertia
+        ixx="3.86103095779101E-06"
+        ixy="5.35292242668959E-08"
+        ixz="1.66363965808682E-11"
+        iyy="1.19658265968406E-05"
+        iyz="1.51149125479685E-11"
+        izz="1.21577945115017E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/ring_proximal_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/ring_proximal_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ring_joint_pitch_1"
+    type="continuous">
+    <origin
+      xyz="-0.0383000000000012 0 0.0245500000000008"
+      rpy="1.5707963267949 -0.550398992199329 0" />
+    <parent
+      link="ring_base_link" />
+    <child
+      link="ring_proximal_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="ring_middle_link">
+    <inertial>
+      <origin
+        xyz="-0.0178937369983921 0.0011256707654909 -0.00025001600834601"
+        rpy="0 0 0" />
+      <mass
+        value="0.0221314883001915" />
+      <inertia
+        ixx="2.00534117958044E-06"
+        ixy="-5.53747260911104E-08"
+        ixz="3.64118241004288E-12"
+        iyy="5.99248180504426E-06"
+        iyz="2.13932822356467E-11"
+        izz="6.08181712652953E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/ring_middle_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/ring_middle_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ring_joint_pitch_2"
+    type="continuous">
+    <origin
+      xyz="-0.0593999999999978 0 0"
+      rpy="0 0 1.36125800411135" />
+    <parent
+      link="ring_proximal_link" />
+    <child
+      link="ring_middle_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="ring_distal_link">
+    <inertial>
+      <origin
+        xyz="-0.00138075875795274 0.00336056694681673 -0.000499999437962279"
+        rpy="0 0 0" />
+      <mass
+        value="0.00533144779400255" />
+      <inertia
+        ixx="4.61825869037871E-07"
+        ixy="-2.52097134939431E-08"
+        ixz="3.39501874724263E-12"
+        iyy="4.48894368783826E-07"
+        iyz="2.95501173726293E-12"
+        izz="5.09291909405685E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/ring_distal_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/ring_distal_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ring_joint_pitch_3"
+    type="continuous">
+    <origin
+      xyz="-0.0493979166666667 0 0"
+      rpy="0 0 -0.0192077912126407" />
+    <parent
+      link="ring_middle_link" />
+    <child
+      link="ring_distal_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="ring_nail_link">
+    <inertial>
+      <origin
+        xyz="-0.0496605607272045 0.00322482252518631 0.0228592899058756"
+        rpy="0 0 0" />
+      <mass
+        value="0.00981859174300355" />
+      <inertia
+        ixx="7.69207908552285E-07"
+        ixy="-1.07977790603007E-08"
+        ixz="-7.49432003758456E-13"
+        iyy="6.95948405876162E-07"
+        iyz="9.24095070634189E-12"
+        izz="9.60343799385285E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/ring_nail_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/ring_nail_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ring_nail_joint"
+    type="fixed">
+    <origin
+      xyz="0.025126866655379 -0.00129943678659215 -0.0234188670938114"
+      rpy="0.00455182696478794 0 0" />
+    <parent
+      link="ring_distal_link" />
+    <child
+      link="ring_nail_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="thumb_base_link">
+    <inertial>
+      <origin
+        xyz="-0.0177415260999432 0.000251484123952095 -0.012215123326873"
+        rpy="0 0 0" />
+      <mass
+        value="0.0111325820526989" />
+      <inertia
+        ixx="2.76750054055784E-06"
+        ixy="-3.10801281156415E-10"
+        ixz="2.29046470130375E-07"
+        iyy="3.69334908838286E-06"
+        iyz="2.85501346606501E-10"
+        izz="1.96037892525537E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/thumb_base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/thumb_base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="thumb_joint_yaw"
+    type="continuous">
+    <origin
+      xyz="0.188782157865955 -0.163620104950288 0.128043186271123"
+      rpy="-2.15707867430239 0.488968484277302 -1.30750856492657" />
+    <parent
+      link="palm" />
+    <child
+      link="thumb_base_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="thumb_proximal_link">
+    <inertial>
+      <origin
+        xyz="-0.0227303745498621 0.000566386454594855 -0.000500084757329544"
+        rpy="0 0 0" />
+      <mass
+        value="0.0343574295570978" />
+      <inertia
+        ixx="3.8610260356166E-06"
+        ixy="5.35307764570901E-08"
+        ixz="1.0874554174964E-11"
+        iyy="1.19658155643087E-05"
+        iyz="1.5098544527414E-11"
+        izz="1.21577777051677E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/thumb_proximal_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/thumb_proximal_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="thumb_joint_pitch_1"
+    type="continuous">
+    <origin
+      xyz="-0.0383000000000002 0 -0.011751265798878"
+      rpy="1.5707963267949 0.204007383326915 0" />
+    <parent
+      link="thumb_base_link" />
+    <child
+      link="thumb_proximal_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="thumb_distal_link">
+    <inertial>
+      <origin
+        xyz="-0.00138075499821675 0.00336055407441653 -0.000250003253498776"
+        rpy="0 0 0" />
+      <mass
+        value="0.00533145326837339" />
+      <inertia
+        ixx="4.61827210256589E-07"
+        ixy="-2.52093218825624E-08"
+        ixz="4.07685012433603E-12"
+        iyy="4.48892528348756E-07"
+        iyz="2.49350364607228E-12"
+        izz="5.09292877366948E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/thumb_distal_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/thumb_distal_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="thumb_joint_pitch_3"
+    type="continuous">
+    <origin
+      xyz="-0.0594 0 0"
+      rpy="0 0 1.57068311026999" />
+    <parent
+      link="thumb_proximal_link" />
+    <child
+      link="thumb_distal_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="thumb_nail_link">
+    <inertial>
+      <origin
+        xyz="-0.0496605599028399 0.00322479197962894 0.0228592717683376"
+        rpy="0 0 0" />
+      <mass
+        value="0.00981861979958662" />
+      <inertia
+        ixx="7.69210049591558E-07"
+        ixy="-1.07977189622527E-08"
+        ixz="-7.66616109576046E-13"
+        iyy="6.95948601228624E-07"
+        iyz="7.68132470787344E-12"
+        izz="9.60346980913037E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/thumb_nail_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/thumb_nail_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="thumb_nail_joint"
+    type="fixed">
+    <origin
+      xyz="0.0251268666553787 -0.00140362395733994 -0.0231092310916193"
+      rpy="0 0 0" />
+    <parent
+      link="thumb_distal_link" />
+    <child
+      link="thumb_nail_link" />
+    <axis
+      xyz="0.600950858188528 -0.220858486272397 0.768166385026015" />
+  </joint>
+  <link
+    name="little_base_link">
+    <inertial>
+      <origin
+        xyz="-0.0177415219884722 0.000251486764915376 0.0240861270613096"
+        rpy="0 0 0" />
+      <mass
+        value="0.0111325868907216" />
+      <inertia
+        ixx="2.76750211097773E-06"
+        ixy="-3.10790081848782E-10"
+        ixz="2.29046870260519E-07"
+        iyy="3.6933512052379E-06"
+        iyz="2.85679140679282E-10"
+        izz="1.96037929325061E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/little_base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/little_base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="little_joint_yaw"
+    type="continuous">
+    <origin
+      xyz="0.115431873174034 -0.219289023275741 0.154283601045679"
+      rpy="1.55431340618317 -0.183702411511518 0.305557819101835" />
+    <parent
+      link="palm" />
+    <child
+      link="little_base_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="little_proximal_link">
+    <inertial>
+      <origin
+        xyz="-0.0227303558003447 0.000566355990620271 -0.000500116499592806"
+        rpy="0 0 0" />
+      <mass
+        value="0.0343575010702149" />
+      <inertia
+        ixx="3.86104254865698E-06"
+        ixy="5.35456765603425E-08"
+        ixz="2.20616251845733E-11"
+        iyy="1.19658438011907E-05"
+        iyz="1.91598942183779E-11"
+        izz="1.21578050860193E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/little_proximal_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/little_proximal_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="little_joint_pitch_1"
+    type="continuous">
+    <origin
+      xyz="-0.0383000000000009 0 0.0245499999999999"
+      rpy="1.57079632679489 -1.13651489482803 0" />
+    <parent
+      link="little_base_link" />
+    <child
+      link="little_proximal_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="little_middle_link">
+    <inertial>
+      <origin
+        xyz="-0.0178937538564702 0.00112565970583129 -0.000750010697185943"
+        rpy="0 0 0" />
+      <mass
+        value="0.0221314769103015" />
+      <inertia
+        ixx="2.00535496515691E-06"
+        ixy="-5.53694026818942E-08"
+        ixz="4.35288562219525E-12"
+        iyy="5.99246225555935E-06"
+        iyz="2.40817398789446E-11"
+        izz="6.08181805119302E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/little_middle_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/little_middle_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="little_joint_pitch_2"
+    type="continuous">
+    <origin
+      xyz="-0.0593999999999999 0 0"
+      rpy="0 0 0.297335170396394" />
+    <parent
+      link="little_proximal_link" />
+    <child
+      link="little_middle_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="little_distal_link">
+    <inertial>
+      <origin
+        xyz="-0.00138075448544514 0.00336055187375126 -0.000999999062850282"
+        rpy="0 0 0" />
+      <mass
+        value="0.00533145501777802" />
+      <inertia
+        ixx="4.61826927578674E-07"
+        ixy="-2.52095069418509E-08"
+        ixz="3.89234862236968E-12"
+        iyy="4.48893008802366E-07"
+        iyz="2.89148396210079E-12"
+        izz="5.09293292202016E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/little_distal_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/little_distal_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="little_joint_pitch_3"
+    type="continuous">
+    <origin
+      xyz="-0.0493979166666667 0 0"
+      rpy="0 0 0.0210739984322688" />
+    <parent
+      link="little_middle_link" />
+    <child
+      link="little_distal_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="little_nail_link">
+    <inertial>
+      <origin
+        xyz="-0.049660559263255 0.00322481468487296 0.022859299602775"
+        rpy="0 0 0" />
+      <mass
+        value="0.00981859850831923" />
+      <inertia
+        ixx="7.69208420431429E-07"
+        ixy="-1.07976987719115E-08"
+        ixz="-7.19035714636606E-13"
+        iyy="6.95948348638113E-07"
+        iyz="9.92100216371663E-12"
+        izz="9.60344654309326E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/little_nail_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Assem3.SLDASM/meshes/little_nail_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="little_nail_joint"
+    type="fixed">
+    <origin
+      xyz="0.0251268666553789 -0.00129943678659267 -0.0239188670938111"
+      rpy="0.00455182696478841 0 0" />
+    <parent
+      link="little_distal_link" />
+    <child
+      link="little_nail_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
