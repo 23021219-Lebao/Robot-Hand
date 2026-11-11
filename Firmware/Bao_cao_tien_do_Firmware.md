@@ -1,111 +1,103 @@
-# Báo cáo tiến độ phát triển Firmware – Bàn tay robot 5 ngón
+# Báo cáo tiến độ firmware – Robot Hand 5 Servo
 
-## 1. Phạm vi công việc
+## 1. Mục tiêu
+Xây dựng firmware điều khiển 5 servo quay liên tục của bàn tay robot thông qua ESP32 và module PCA9685. Mỗi servo có chu trình đóng/mở và thời gian hoạt động riêng; có thể điều khiển độc lập hoặc đồng thời theo nhóm.
 
-Phần công việc phụ trách: **Firmware** cho đề tài bàn tay robot 5 ngón.
+## 2. Phần cứng và cấu hình
+- Vi điều khiển: ESP32-WROOM.
+- Driver PWM: PCA9685, địa chỉ I2C `0x40`.
+- SDA: GPIO21; SCL: GPIO22.
+- Tần số PWM: 50 Hz.
+- Servo: 5 MG996R continuous-rotation, kết nối các kênh CH0–CH4.
+- Thứ tự kênh: vàng CH0, đỏ CH1, xanh lá CH2, cam CH3, nâu CH4.
+- Nguồn servo cần là nguồn ngoài đủ dòng; nối chung GND nguồn servo, PCA9685 và ESP32. Không cấp nguồn cho cả 5 servo từ chân 5V của ESP32.
 
-Mục tiêu hiện tại là xây dựng chương trình điều khiển các servo quay liên tục thông qua ESP32 và mạch điều khiển PWM PCA9685. Công việc đang tập trung vào thử nghiệm điều khiển servo, hiệu chuẩn từng servo và chuẩn bị nền tảng cho việc điều khiển từng ngón tay.
+## 3. Bảng hiệu chuẩn xung
 
-## 2. Cấu hình phần cứng và phần mềm
+| Servo | Kênh | Quay thuận (µs) | Dừng (µs) | Quay ngược (µs) |
+|---|---:|---:|---:|---:|
+| Vàng | 0 | 1800 | 1600 | 1200 |
+| Đỏ | 1 | 1200 | 1700 | 1800 |
+| Xanh lá | 2 | 1200 | 1700 | 1800 |
+| Cam | 3 | 2100 | 1700 | 1200 |
+| Nâu | 4 | 2100 | 1700 | 1200 |
 
-| Thành phần / thông số | Cấu hình |
-|---|---|
-| Vi điều khiển | ESP32 |
-| Mạch điều khiển PWM | PCA9685 |
-| Địa chỉ I2C | `0x40` |
-| SDA | GPIO 21 |
-| SCL | GPIO 22 |
-| Tần số PWM | 50 Hz |
-| Động cơ | 5 servo MG996R 360° |
-| Môi trường lập trình | Arduino IDE |
-| Thư viện | `Wire.h`, `Adafruit_PWMServoDriver.h` |
-| Kênh đang thử nghiệm trong code | PCA9685 CH0 |
+Các giá trị trên là kết quả hiệu chuẩn thực nghiệm riêng cho từng servo. Xung dừng có thể khác nhau giữa các servo và cần được giữ độc lập trong cấu hình.
 
-**Lưu ý:** Chương trình hiện tại mới điều khiển CH0. Bảng hiệu chuẩn nhận diện servo theo màu dây tín hiệu; chưa xác nhận đây là thứ tự kết nối cuối cùng trên các kênh PCA9685.
+## 4. Bảng thời gian chu trình
 
-## 3. Kết quả hiệu chuẩn servo
+| Servo | Đóng – xung | Thời gian đóng | Mở – xung | Thời gian mở |
+|---|---:|---:|---:|---:|
+| Vàng | 1800 µs | 50 s | 1200 µs | 10 s |
+| Đỏ | 1800 µs | 6 s | 1200 µs | 2 s |
+| Xanh lá | 1800 µs | 10 s | 1200 µs | 4 s |
+| Cam | 2100 µs | 4 s | 1200 µs | 4 s |
+| Nâu | 2100 µs | 10 s | 1200 µs | 8 s |
 
-Các servo được thử nghiệm riêng lẻ. Bảng dưới đây tổng hợp các giá trị xung PWM đã ghi nhận.
+Thời gian trên được đo khi thử từng servo riêng lẻ. Cần kiểm tra và tinh chỉnh lại khi lắp đủ tải cơ khí và chạy đồng thời.
 
-| Servo (màu dây tín hiệu) | Thuận (µs) | Dừng (µs) | Ngược (µs) |
-|---|---:|---:|---:|
-| Vàng | 1800 | 1600 | 1200 |
-| Đỏ | 1200 | 1700 | 1800 |
-| Xanh | 1200 | 1700 | 1800 |
-| Cam | 2100 | 1700 | 1200 |
-| Nâu | 2100 | 1700 | 1200 |
+## 5. Kiến trúc firmware
 
-### Ghi chú hiệu chuẩn
+Firmware sử dụng state machine không chặn (non-blocking) dựa trên `millis()`.
 
-- Các giá trị trên là kết quả thử nghiệm hiện tại.
-- Mỗi servo có thông số hiệu chuẩn riêng; không mặc định thông số của servo này áp dụng cho servo khác.
-- Với servo quay liên tục, độ rộng xung PWM quyết định chiều quay và tốc độ quay, không điều khiển trực tiếp một góc quay cố định.
-- Có thể cần hiệu chỉnh nhỏ quanh giá trị dừng nếu servo vẫn tự quay.
+Mỗi servo có ba trạng thái:
+- `IDLE`: servo được phát xung dừng.
+- `CLOSING`: servo chạy theo xung và thời gian đóng riêng.
+- `OPENING`: servo chạy theo xung và thời gian mở riêng.
 
-## 4. Chương trình firmware hiện tại
+Mỗi servo có cấu hình độc lập gồm kênh PCA9685, xung đóng, thời gian đóng, xung mở, thời gian mở và xung dừng. Biến thời gian bắt đầu được lưu riêng cho từng servo.
 
-File chương trình Arduino IDE đi kèm báo cáo là:
+Trong `loop()`, chương trình liên tục:
+1. Đọc lệnh Serial.
+2. Cập nhật trạng thái và thời gian của cả 5 servo.
+3. Khi thời gian của một servo kết thúc, chỉ servo đó được chuyển về `IDLE` và phát xung dừng.
 
-`Firmware_Test.ino`
+Nhờ vậy, các servo có thể bắt đầu và kết thúc ở những thời điểm khác nhau mà không phải chờ nhau. Không dùng `delay()` để tạo thời gian chạy servo trong vòng lặp chính.
 
-Chương trình hiện tại thực hiện lần lượt ba lệnh xung PWM trên PCA9685 CH0:
+## 6. Lệnh điều khiển Serial
 
-| Lệnh | Độ rộng xung | Thời gian |
-|---|---:|---:|
-| Lệnh thứ nhất | 1800 µs | 4 giây |
-| Lệnh thứ hai | 1600 µs | 2 giây |
-| Lệnh thứ ba | 1200 µs | 5 giây |
+Thiết lập Serial Monitor: **115200 baud**, chọn kết thúc dòng **Newline**.
 
-### 4.1. Chuyển đổi xung PWM sang ticks
+| Servo | Đóng | Mở | Dừng |
+|---|---|---|---|
+| Vàng | `YC` | `YO` | `YS` |
+| Đỏ | `RC` | `RO` | `RS` |
+| Xanh lá | `GC` | `GO` | `GS` |
+| Cam | `OC` | `OO` | `OS` |
+| Nâu | `BC` | `BO` | `BS` |
 
-Ở tần số 50 Hz, chu kỳ PWM là 20.000 µs. PCA9685 chia chu kỳ thành 4096 mức. Công thức đang sử dụng:
+Lệnh nhóm:
+- `ALLC`: bắt đầu đóng cả 5 servo.
+- `ALLO`: bắt đầu mở cả 5 servo.
+- `ALLS`: dừng cả 5 servo.
+- `STATUS`: in trạng thái hiện tại của từng servo.
 
-```cpp
-int ticks = pulse * 4096 / 20000;
-```
+Khi gửi lệnh mới cho một servo đang chạy, trạng thái và mốc thời gian của servo đó được cập nhật theo lệnh mới.
 
-| Độ rộng xung (µs) | Giá trị ticks |
-|---:|---:|
-| 1800 | 368 |
-| 1600 | 327 |
-| 1200 | 245 |
+## 7. Lưu ý kỹ thuật
+- MG996R continuous-rotation không điều khiển vị trí góc như servo 180°. Xung PWM điều khiển chiều/tốc độ; thời gian chạy chỉ ước lượng hành trình.
+- Firmware hiện chưa có cảm biến phản hồi vị trí hoặc phát hiện kẹt ngón tay. Nếu cơ cấu bị cản, chương trình vẫn kết thúc theo thời gian đã đặt.
+- Cần thử nghiệm với cơ cấu không tải trước, sau đó tăng dần tải; chuẩn bị nút ngắt nguồn servo khi kiểm thử.
+- Nếu servo vẫn quay khi đã phát xung dừng, cần hiệu chuẩn lại xung dừng của chính servo đó.
+- `delay(10)` trong `setup()` chỉ dùng sau khi khởi tạo tần số PCA9685; vòng lặp điều khiển không sử dụng delay chặn.
 
-Hàm điều khiển hiện tại xuất tín hiệu tới kênh CH0 bằng lệnh:
+## 8. Tiến độ và công việc tiếp theo
 
-```cpp
-pwm.setPWM(0, 0, ticks);
-```
+### Đã triển khai trong firmware
+- [x] Khai báo cấu hình riêng cho 5 servo.
+- [x] Lưu xung đóng/mở/dừng riêng từng servo.
+- [x] Tạo state machine `IDLE`, `CLOSING`, `OPENING`.
+- [x] Sử dụng `millis()` để quản lý thời gian độc lập.
+- [x] Điều khiển từng servo qua Serial.
+- [x] Điều khiển nhóm và truy vấn trạng thái.
 
-## 5. Tiến độ thực hiện
-
-- [x] Khởi tạo giao tiếp I2C giữa ESP32 và PCA9685.
-- [x] Cấu hình địa chỉ PCA9685 `0x40`.
-- [x] Thiết lập tần số PWM 50 Hz.
-- [x] Xây dựng hàm chuyển đổi độ rộng xung sang giá trị ticks.
-- [x] Thử nghiệm điều khiển servo trên kênh CH0.
-- [x] Khảo sát giá trị thuận, dừng và ngược cho cả 5 servo.
-- [ ] Xác nhận sơ đồ kết nối từng servo với các kênh PCA9685.
-- [ ] Mở rộng hàm điều khiển để lựa chọn kênh servo.
-- [ ] Xây dựng chức năng điều khiển riêng từng ngón tay.
-- [ ] Xây dựng các thao tác phối hợp cho toàn bộ bàn tay.
-- [ ] Bổ sung giới hạn thời gian chuyển động và cơ chế dừng an toàn.
-- [ ] Tích hợp dữ liệu cảm biến lực để điều chỉnh lực nắm.
-
-## 6. Kế hoạch phát triển tiếp theo
-
-1. Xác nhận servo tương ứng với từng kênh PCA9685.
-2. Mở rộng hàm điều khiển để có thể truyền vào kênh servo và giá trị xung PWM.
-3. Lưu riêng thông số hiệu chuẩn của từng servo.
-4. Xây dựng các thao tác cơ bản: mở, đóng và dừng từng ngón tay.
-5. Bổ sung giới hạn thời gian kéo dây nhằm tránh kéo quá mức, tuột vít hoặc đứt dây.
-6. Tích hợp phản hồi cảm biến lực sau khi phần điều khiển servo cơ bản ổn định.
-
-## 7. Trạng thái hiện tại
-
-Firmware đang ở giai đoạn **thử nghiệm điều khiển PWM và hiệu chuẩn riêng từng servo**. Cả 5 servo đã có giá trị xung PWM tương ứng với chiều thuận, trạng thái dừng và chiều ngược.
-
-Chương trình hiện tại vẫn là chương trình thử nghiệm một servo trên CH0. Điều khiển nhiều kênh, điều khiển từng ngón tay, phối hợp chuyển động và tích hợp cảm biến lực là các phần dự kiến triển khai tiếp theo.
+### Cần kiểm thử/hoàn thiện
+- [ ] Nạp firmware và xác nhận đúng thứ tự kênh.
+- [ ] Kiểm tra xung dừng của cả 5 servo khi lắp trên cơ cấu.
+- [ ] Đo lại thời gian đóng/mở khi chịu tải thực tế.
+- [ ] Kiểm tra nhiều lệnh đến liên tiếp và lệnh ghi đè khi servo đang chạy.
+- [ ] Kiểm tra sụt áp, nhiễu nguồn và độ ổn định khi 5 servo hoạt động đồng thời.
+- [ ] Tích hợp lệnh điều khiển từ giao diện/phần mềm cấp cao.
 
 ---
-
-*Tài liệu được cập nhật theo tiến độ thực hiện firmware của đề tài.*
+*Tài liệu phản ánh cấu hình và số liệu thử nghiệm hiện có; cần cập nhật sau các lần kiểm thử cơ khí tiếp theo.*
